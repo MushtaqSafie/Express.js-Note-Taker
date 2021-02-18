@@ -40,4 +40,18 @@ app.post('/api/notes', (req, res) => {
   console.log(newNote);
 });
 
+app.delete('/api/notes/:id', function (req, res) {
+  const { id } = req.params;
+  let obj = JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json'), 'utf-8'))
+  const deleted = obj.find(e => e.id === id)
+
+  if (deleted) {
+    obj = obj.filter(e => e.id !== id)
+    console.log(obj);
+    fs.writeFileSync(path.join(__dirname, '/db/db.json'), JSON.stringify(obj, null, 2))
+  } else {
+    res.send('Got a DELETE request at /user');
+  }
+})
+
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
