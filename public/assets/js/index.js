@@ -23,6 +23,14 @@ const hide = (elem) => {
 };
 
 // activeNote is used to keep track of the note in the textarea
+// const obj = [
+//   {
+//       "title":"Test Title",
+//       "text":"Test text"
+//   }
+// ];
+
+// console.log(obj[0].title);
 let activeNote = {};
 
 const getNotes = () =>

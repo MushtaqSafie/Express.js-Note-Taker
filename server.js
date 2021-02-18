@@ -27,16 +27,16 @@ app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.
 app.get('/api/notes', (req, res) => {
   // var obj = JSON.parse(fs.readFileSync('file', 'utf8'));
   // fs.readFileSync(path.join(__dirname, 'db.json'), 'utf-8')
-  res.json(JSON.parse(fs.readFileSync(path.join(__dirname, 'db.json'), 'utf-8')));
+  res.json(JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json'), 'utf-8')));
 });
 
 app.post('/api/notes', (req, res) => {
   const newNote = req.body;
-  newNote.ID = uniqid();
-  const obj = JSON.parse(fs.readFileSync(path.join(__dirname, 'db.json'), 'utf-8'))
+  newNote.id = uniqid();
+  const obj = JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json'), 'utf-8'))
   obj.push(newNote);
-  fs.writeFileSync(path.join(__dirname, 'db.json'), JSON.stringify(obj, null, 2))
-  res.json(JSON.parse(fs.readFileSync(path.join(__dirname, 'db.json'), 'utf-8')));
+  fs.writeFileSync(path.join(__dirname, '/db/db.json'), JSON.stringify(obj, null, 2))
+  res.json(JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json'), 'utf-8')));
   console.log(newNote);
 });
 
