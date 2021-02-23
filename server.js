@@ -50,7 +50,7 @@ app.delete('/api/notes/:id', function (req, res) {
     console.log(obj);
     fs.writeFileSync(path.join(__dirname, '/db/db.json'), JSON.stringify(obj, null, 2))
   } else {
-    res.send('Got a DELETE request at /user');
+    res.json(JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json'), 'utf-8')));
   }
 })
 
